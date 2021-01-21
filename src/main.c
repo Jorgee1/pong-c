@@ -17,10 +17,6 @@
 #include "views/gameover/gameover.h"
 
 
-/*
- * TODO: Agregar condicion para poder llegar al gameover
- *
- */
 
 int main(int argc, char* argv[])
 {
