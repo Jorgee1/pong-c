@@ -2,9 +2,9 @@
 
 void pause_action_logic
 (
-	struct Input* input,
-	struct PauseLayout* layout,
-	struct Screen* screen
+	Input* input,
+	PauseLayout* layout,
+	Screen* screen
 )
 {
 	if (input->up.action_state)
@@ -48,10 +48,10 @@ void pause_update_world()
 
 void pause_render
 (
-	struct Screen* screen,
-	struct PauseLayout* layout,
-	struct Letter letters[],
-	struct Letter letters_selected[]
+	Screen* screen,
+	PauseLayout* layout,
+	Letter letters[],
+	Letter letters_selected[]
 )
 {
 	int x = screen->rect.w / 2;

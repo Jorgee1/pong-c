@@ -6,9 +6,9 @@
 #include <SDL.h>
 #include <SDL_ttf.h>
 
-#include "utils/sdl.h"
-#include "input/input.h"
-#include "charset/charset.h"
+#include "utils.h"
+#include "controller.h"
+#include "charset.h"
 
 #include "views/index.h"
 #include "views/start/start.h"
@@ -17,14 +17,13 @@
 #include "views/gameover/gameover.h"
 
 
-
 int main(int argc, char* argv[])
 {
 	///////////////////////////////////////////////////////////////////////////////////////
 	// COLOR //////////////////////////////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////////////////////////////////
-	
-	struct Colors colors;
+
+	Colors colors;
 	colors.red   = (SDL_Color) {0xFF, 0x00, 0x00, 0xFF};
 	colors.green = (SDL_Color) {0x00, 0xFF, 0x00, 0xFF};
 	colors.blue  = (SDL_Color) {0x00, 0x00, 0xFF, 0xFF};
@@ -35,7 +34,7 @@ int main(int argc, char* argv[])
 	// SDL INIT ///////////////////////////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////////////////////////////////
 
-	struct Screen screen;
+	Screen screen;
 	screen.name = "Pong";
 	screen.view_index = 0;
 
@@ -78,18 +77,18 @@ int main(int argc, char* argv[])
 	// BUTTONS ////////////////////////////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////////////////////////////////
 
-	struct Input input;
-	input.up    = (struct Button) {SDL_SCANCODE_UP,    0,0,0};
-	input.down  = (struct Button) {SDL_SCANCODE_DOWN,  0,0,0};
-	input.left  = (struct Button) {SDL_SCANCODE_LEFT,  0,0,0};
-	input.right = (struct Button) {SDL_SCANCODE_RIGHT, 0,0,0};
+	Input input;
+	input.up    = (Button) {SDL_SCANCODE_UP,    0,0,0};
+	input.down  = (Button) {SDL_SCANCODE_DOWN,  0,0,0};
+	input.left  = (Button) {SDL_SCANCODE_LEFT,  0,0,0};
+	input.right = (Button) {SDL_SCANCODE_RIGHT, 0,0,0};
 
-	input.action = (struct Button) {SDL_SCANCODE_Z,      0,0,0};
-	input.cancel = (struct Button) {SDL_SCANCODE_X,      0,0,0};
-	input.start  = (struct Button) {SDL_SCANCODE_RETURN, 0,0,0};
+	input.action = (Button) {SDL_SCANCODE_Z,      0,0,0};
+	input.cancel = (Button) {SDL_SCANCODE_X,      0,0,0};
+	input.start  = (Button) {SDL_SCANCODE_RETURN, 0,0,0};
 
 	const int key_size = 7;
-	struct Button* buttons[key_size] = {
+	Button* buttons[key_size] = {
 		&input.up,
 		&input.down,
 		&input.left,
@@ -106,9 +105,9 @@ int main(int argc, char* argv[])
 	int font_size = 30;
 
 	const int charset_size = 128;
-	struct Letter letters_white[charset_size];
-	struct Letter letters_red[charset_size];
-	struct Letter letters_green[charset_size];
+	Letter letters_white[charset_size];
+	Letter letters_red[charset_size];
+	Letter letters_green[charset_size];
 
 	TTF_Font* font = NULL;
 	if (TTF_Init() < 0) return 1;
@@ -137,7 +136,7 @@ int main(int argc, char* argv[])
 	// START LAYOUT ///////////////////////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////////////////////////////////
 	
-	struct StartLayout start_layout;
+	StartLayout start_layout;
 	start_layout.title = "PONG";
 	start_layout.message = "Press Start";
 
@@ -149,7 +148,7 @@ int main(int argc, char* argv[])
 	// PAUSE LAYOUT ///////////////////////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////////////////////////////////
 
-	struct PauseLayout pause_layout;
+	PauseLayout pause_layout;
 	pause_layout.title = "PAUSE";
 	
 	pause_layout.options[PAUSE_RESUME] = "CONTINUE";
@@ -162,7 +161,7 @@ int main(int argc, char* argv[])
 	// GAMEOVER LAYOUT ////////////////////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////////////////////////////////
 
-	struct GameOverLayout gameover_layout;
+	GameOverLayout gameover_layout;
 	gameover_layout.title = "GAME OVER";
 	gameover_layout.question = "Continue?";
 
@@ -177,7 +176,7 @@ int main(int argc, char* argv[])
 	///////////////////////////////////////////////////////////////////////////////////////
 
 	const int player_count = 2;
-	struct Player players[player_count];
+	Player players[player_count];
 
 	players[0].box.x = 0;
 	players[0].box.y = 0;
@@ -200,7 +199,7 @@ int main(int argc, char* argv[])
 	players[1].score = 0;
 	players[1].color = colors.white;
 
-	struct Ball ball;
+	Ball ball;
 	ball.box.x = 0;
 	ball.box.y = 0;
 	ball.box.h = 20;
@@ -212,7 +211,7 @@ int main(int argc, char* argv[])
 
 	ball.color = colors.white;
 
-	struct PongLayout pong_layout;
+	PongLayout pong_layout;
 	pong_layout.score_padding   = 20;
 	pong_layout.players_padding = 60;
 	pong_layout.line[0] = (SDL_Point) {screen.rect.w/2, 0};

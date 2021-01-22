@@ -2,12 +2,12 @@
 
 
 void gameover_action_logic(
-	struct Input* input,
-	struct GameOverLayout* layout,
-	struct Screen* screen,
-	struct Ball* ball,
-	struct Player players[2],
-	struct PongLayout* pong_layout
+	Input* input,
+	GameOverLayout* layout,
+	Screen* screen,
+	Ball* ball,
+	Player players[2],
+	PongLayout* pong_layout
 )
 {
 	if (input->up.action_state)
@@ -53,10 +53,10 @@ void gameover_update_world()
 
 void gameover_render
 (
-	struct Screen* screen,
-	struct GameOverLayout* layout,
-	struct Letter letters[],
-	struct Letter letters_selected[]
+	Screen* screen,
+	GameOverLayout* layout,
+	Letter letters[],
+	Letter letters_selected[]
 )
 {
 	int x = screen->rect.w / 2;

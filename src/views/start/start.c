@@ -3,7 +3,7 @@
 
 void start_action_logic
 (
-	struct Input* input,
+	Input* input,
 	int* view_current
 )
 {
@@ -13,10 +13,9 @@ void start_action_logic
 	}
 }
 
-void start_collision_detection()
-{}
+void start_collision_detection() {}
 
-void start_update_world(struct StartLayout* layout)
+void start_update_world(StartLayout* layout)
 {
 	layout->blink_frame_count += 1;
 
@@ -37,9 +36,9 @@ void start_update_world(struct StartLayout* layout)
 
 void start_render
 (
-	struct Screen* screen,
-	struct StartLayout* layout,
-	struct Letter letters[]
+	Screen* screen,
+	StartLayout* layout,
+	Letter letters[]
 )
 {
 	int x = screen->rect.w/2;
@@ -66,7 +65,4 @@ void start_render
 			layout->message
 		);
 	}
-
-
-
 }

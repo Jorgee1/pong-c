@@ -1,11 +1,10 @@
 #include <SDL.h>
 
+#include "utils.h"
+#include "controller.h"
+#include "charset.h"
+
 #include "views/index.h"
-
-#include "utils/sdl.h"
-#include "input/input.h"
-#include "charset/charset.h"
-
 
 #ifndef PAUSE_H
 #define PAUSE_H
@@ -17,18 +16,18 @@ enum PAUSE_OPTIONS
 	PAUSE_TOTAL
 };
 
-struct PauseLayout
+typedef struct
 {
 	char* title;
 	char* options[2];
 	int index;
 	int spacing;
-};
+} PauseLayout;
 
 void pause_action_logic(
-	struct Input*,
-	struct PauseLayout*,
-	struct Screen*
+	Input*,
+	PauseLayout*,
+	Screen*
 );
 
 void pause_collision_detection();
@@ -37,10 +36,10 @@ void pause_update_world();
 
 void pause_render
 (
-	struct Screen*,
-	struct PauseLayout*,
-	struct Letter[],
-	struct Letter[]
+	Screen*,
+	PauseLayout*,
+	Letter[],
+	Letter[]
 );
 
 #endif

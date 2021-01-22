@@ -1,16 +1,15 @@
 #include <SDL.h>
 
+#include "utils.h"
+#include "controller.h"
+#include "charset.h"
+
 #include "views/index.h"
-
-#include "utils/sdl.h"
-#include "input/input.h"
-#include "charset/charset.h"
-
 
 #ifndef START_H
 #define START_H
 
-struct StartLayout
+typedef struct
 {
 	char* title;
 	char* message;
@@ -18,23 +17,14 @@ struct StartLayout
 	int blink_flag;
 	int blink_frame_count;
 	int blink_max_frame;
-};
+} StartLayout;
 
-void start_action_logic
-(
-	struct Input*,
-	int*
-);
+void start_action_logic(Input*, int*);
 
 void start_collision_detection();
 
 void start_update_world();
 
-void start_render
-(
-	struct Screen*,
-	struct StartLayout*,
-	struct Letter[]
-);
+void start_render(Screen*, StartLayout*, Letter[]);
 
 #endif

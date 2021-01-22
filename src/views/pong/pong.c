@@ -1,6 +1,6 @@
 #include "pong.h"
 
-void reset_players(struct Player players[2], struct PongLayout* layout)
+void reset_players(Player players[2], PongLayout* layout)
 {
 	players[0].box.x = layout->player_start_position[0].x;
 	players[0].box.y = layout->player_start_position[0].y;
@@ -11,7 +11,7 @@ void reset_players(struct Player players[2], struct PongLayout* layout)
 	players[1].score = 0;
 }
 
-void reset_ball_speed(struct Ball* ball, struct PongLayout* layout)
+void reset_ball_speed(Ball* ball, PongLayout* layout)
 {
 	ball->box.x = layout->ball_start_position.x;
 	ball->box.y = layout->ball_start_position.y;
@@ -23,9 +23,9 @@ void reset_ball_speed(struct Ball* ball, struct PongLayout* layout)
 
 void game_action_logic
 (
-	struct Input* input,
-	struct Player players[],
-	struct Ball* ball,
+	Input* input,
+	Player players[],
+	Ball* ball,
 	int* view_current
 )
 {
@@ -45,11 +45,11 @@ void game_action_logic
 
 void game_collision_detection
 (
-	struct Player players[],
+	Player players[],
 	int player_count,
-	struct Ball* ball,
-	struct Screen* screen,
-	struct PongLayout* layout
+	Ball* ball,
+	Screen* screen,
+	PongLayout* layout
 )
 {
 	// Check player colitino against world
@@ -88,10 +88,10 @@ void game_collision_detection
 
 void game_update_world
 (
-	struct Player players[],
+	Player players[],
 	int player_count,
-	struct Ball* ball,
-	struct Screen* screen
+	Ball* ball,
+	Screen* screen
 )
 {
 
@@ -113,12 +113,12 @@ void game_update_world
 
 void game_render
 (
-	struct Screen* screen,
-	struct PongLayout* layout,
-	struct Player players[],
+	Screen* screen,
+	PongLayout* layout,
+	Player players[],
 	int player_count,
-	struct Ball* ball,
-	struct Letter letters[]
+	Ball* ball,
+	Letter letters[]
 )
 {
 	for (int i = 0; i < player_count; i++)

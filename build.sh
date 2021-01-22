@@ -23,7 +23,7 @@ for file in $FILES
 do
     echo "Building $file"
     OBJ=$OBJ_PATH/$(basename ${file} $ext).o
-    $COMPILER -c $file -o $OBJ -I$SDL_PATH -I$SRC_PATH/
+    $COMPILER -c $file -o $OBJ -I$SDL_PATH -I$SRC_PATH -I$USER_INCLUDE/sdl-helper
     OBJS+="$OBJ "
 done
 
@@ -36,7 +36,7 @@ else
     mkdir $BIN_PATH
 fi
 
-$COMPILER $OBJS $FLAGS -o $BIN_PATH/$NAME 
+$COMPILER $OBJS $FLAGS -o $BIN_PATH/$NAME $USER_LIB/sdl-helper.a
 
 if [ -d $ASSET_PATH ]
 then

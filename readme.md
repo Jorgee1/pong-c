@@ -2,7 +2,7 @@
 
 Implementation of Pong written in C and SDL.
 
-![Alt Text](https://media.giphy.com/media/ZbgFO5zqDrj26iJJBP/giphy.gif)
+![Pong game gif](https://media.giphy.com/media/ZbgFO5zqDrj26iJJBP/giphy.gif)
 
 
 ## Controls
@@ -19,7 +19,8 @@ Firest the following packages are needed:
 * SDL_ttf
 * SDL_image
 * clang
+* sdl-helper (https://github.com/Jorgee1/sdl-helper)
 
 ### Linux
 
-To compile use the build.sh file.
+To compile use the build.sh file. enviromental variables USER_INCLUDE, USER_LIB must exist.
