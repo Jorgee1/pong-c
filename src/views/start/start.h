@@ -17,6 +17,9 @@ typedef struct
 	int blink_flag;
 	int blink_frame_count;
 	int blink_max_frame;
+
+    Screen* screen;
+    Letter* letters;
 } StartLayout;
 
 void start_action_logic(Input*, int*);
@@ -25,6 +28,6 @@ void start_collision_detection();
 
 void start_update_world();
 
-void start_render(Screen*, StartLayout*, Letter[]);
+void start_render(StartLayout*);
 
 #endif

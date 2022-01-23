@@ -1,11 +1,7 @@
 #include "start.h"
 
 
-void start_action_logic
-(
-	Input* input,
-	int* view_current
-)
+void start_action_logic(Input* input, int* view_current)
 {
 	if (input->start.action_state)
 	{
@@ -34,34 +30,35 @@ void start_update_world(StartLayout* layout)
 	}
 }
 
-void start_render
-(
-	Screen* screen,
-	StartLayout* layout,
-	Letter letters[]
-)
+void start_render(StartLayout* layout)
 {
-	int x = screen->rect.w/2;
-	int y = screen->rect.h/4;
+    SDL_Renderer* renderer = layout->screen->renderer;
+    SDL_Rect rect = layout->screen->rect;
+    
+	int x = rect.w/2;
+	int y = rect.h/4;
 
+    char* title = layout->title;
+
+    int title_width = get_string_w(layout->letters, title);
 
 	render_string(
-		screen->renderer,
-		x - get_string_w(letters, layout->title)/2,
+		renderer,
+		x - title_width/2,
 		y,
-		letters,
-		layout->title
+		layout->letters,
+		title
 	);
 
-	y = 2*screen->rect.h/3;
 
 	if (layout->blink_flag)
 	{
+        y = 2*rect.h/3;
 		render_string(
-			screen->renderer,
-			x - get_string_w(letters, layout->message)/2,
+			renderer,
+			x - get_string_w(layout->letters, layout->message)/2,
 			y,
-			letters,
+			layout->letters,
 			layout->message
 		);
 	}
